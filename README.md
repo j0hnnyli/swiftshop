@@ -16,7 +16,6 @@ SwiftShop was designed to offer a easy shopping experience with features like qu
 
 ## How To Set Up
 1) clone the repository
-2) run the following code 
 <code>
   git clone https://github.com/j0hnnyli/swiftshop.git
   npm run dev

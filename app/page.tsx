@@ -17,7 +17,6 @@ export default async function Home() {
   return (
     <>
       <div className="md:h-[80vh] relative">
-
         <div className="h-[33%] w-full flex items-center justify-center">
           <LoopingText text='WELCOME TO ' direction='right'/>
         </div>
@@ -27,8 +26,6 @@ export default async function Home() {
         <div className="h-[33%] w-full flex items-center justify-center">
           <LoopingText text='SHOP' direction='right'/>
         </div>
-    
-
       </div>
 
       <div className="max-w-[1800px] w-[85%] mx-auto">

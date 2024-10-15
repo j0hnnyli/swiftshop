@@ -1,7 +1,7 @@
 'use client'
 import { Category } from '@/TS/categoryType'
 import Link from 'next/link'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 
 type Props = {
@@ -12,11 +12,12 @@ const CategoryCard = ({ categories }: Props) => {
   const [showCard, setShowCard] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (e: MouseEvent) => {
+
+  const handleClickOutside = useCallback((e: MouseEvent) => {
     if (ref.current && !ref.current.contains(e.target as Node)) {
       setShowCard(false);
     }
-  };
+  }, [])
 
   useEffect(() => {
     if(showCard){
@@ -24,12 +25,13 @@ const CategoryCard = ({ categories }: Props) => {
     }
 
     return () => window.removeEventListener('mousedown', handleClickOutside);
-  }, [showCard]);
+  }, [showCard, handleClickOutside]);
 
   return (
     <div className='relative'>
       <button
-        onClick={() => setShowCard(prev => !prev)}
+        disabled={showCard}
+        onClick={() => setShowCard(true)}
         className='cursor-pointer rounded-xl p-2 hover:bg-zinc-500 hover:text-orange-500'
       >
         Categories

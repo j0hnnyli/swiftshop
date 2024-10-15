@@ -12,6 +12,7 @@ const CategoryCard = ({ categories }: Props) => {
   const [showCard, setShowCard] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
+
   const handleClickOutside = useCallback((e: MouseEvent) => {
     if (ref.current && !ref.current.contains(e.target as Node)) {
       setShowCard(false);

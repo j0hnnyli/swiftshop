@@ -24,7 +24,7 @@ export default function RootLayout({
           <CartContextProvider>
             <Header />
             <MediaHeader />
-            <main className="mt-5 lg:mt-24">{children}</main>
+            <main className="mt-14 md:mt-24">{children}</main>
           </CartContextProvider>
         </DarkProvider>
       </body>

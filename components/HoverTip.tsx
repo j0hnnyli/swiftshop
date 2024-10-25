@@ -16,7 +16,7 @@ const HoverTip = ({ children, tip, asChild = false } : Props) => {
 
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={100}>
       <Tooltip>
         <TooltipTrigger
           className='p-2 rounded-xl hover:bg-zinc-500 hover:text-orange-500 mr-1'

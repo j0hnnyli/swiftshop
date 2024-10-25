@@ -6,6 +6,7 @@ import { Category } from "@/TS/categoryType";
 import { ArrowLongRightIcon } from '@heroicons/react/24/solid'
 import supabase from '@/connectSupaBase'
 import LoopingText from "@/components/LoopingText";
+import Showcase from "@/components/Showcase";
 
 export default async function Home() {
   const {data: popular} = await supabase
@@ -16,19 +17,9 @@ export default async function Home() {
   
   return (
     <>
-      <div className="md:h-[80vh] relative">
-        <div className="h-[33%] w-full flex items-center justify-center">
-          <LoopingText text='WELCOME TO ' direction='right'/>
-        </div>
-        <div className="h-[33%] w-full flex items-center justify-center">
-          <LoopingText text='SWIFT' direction='left'/>
-        </div>
-        <div className="h-[33%] w-full flex items-center justify-center">
-          <LoopingText text='SHOP' direction='right'/>
-        </div>
-      </div>
+      <Showcase />
 
-      <div className="max-w-[1800px] w-[85%] mx-auto">
+      <div className="max-w-[1800px] w-[85%] mx-auto mt-5">
         <h2 className="text-2xl tracking-widest mb-4">Popular Searches :</h2>
 
         <div className="lg:hidden flex items-center justify-center mt-[-15px]">
@@ -47,7 +38,7 @@ export default async function Home() {
           Shop By Categories 
         </h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 items-center gap-4 mb-2">
+        <div className="grid grid-cols-2 lg:grid-cols-5 items-center gap-4 mb-2">
           {categories?.map((category: Category) => (
             <div key={category.id}
               className='relative w-full h-[300px] '
@@ -64,7 +55,7 @@ export default async function Home() {
 
               <div className="absolute flex items-center justify-center  w-full h-full">
                 <div className="relative z-30 flex flex-col items-center justify-center">                
-                  <h2 className="text-white text-2xl tracking-widest mb-4">
+                  <h2 className="text-white text-lg md:text-2xl tracking-widest mb-4">
                     {category.title}
                   </h2>
 

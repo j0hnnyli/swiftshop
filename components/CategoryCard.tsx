@@ -10,27 +10,30 @@ type Props = {
 
 const CategoryCard = ({ categories }: Props) => {
   const [showCard, setShowCard] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef= useRef<HTMLButtonElement>(null);
 
-  const handleClickOutside = useCallback((e: MouseEvent) => {
-    if (ref.current && !ref.current.contains(e.target as Node)) {
-      setShowCard(false);
-    }
-  }, [])
-
+  
   useEffect(() => {
-    if(showCard){
-      window.addEventListener('mousedown', handleClickOutside);
+    const handleClickOutside = (e: MouseEvent) => {
+      const isButtonClicked = buttonRef.current && !buttonRef.current.contains(e.target as Node);
+      const isContainerClicked = containerRef.current && !containerRef.current.contains(e.target as Node);
+
+      if(isButtonClicked && isContainerClicked){
+        setShowCard(false)
+      }
     }
 
+    window.addEventListener('mousedown', handleClickOutside);
+    
     return () => window.removeEventListener('mousedown', handleClickOutside);
-  }, [showCard, handleClickOutside]);
+  }, [showCard]);
 
   return (
     <div className='relative'>
       <button
-        disabled={showCard}
-        onClick={() => setShowCard(true)}
+        ref={buttonRef}
+        onClick={() => setShowCard(!showCard)}
         className='cursor-pointer rounded-xl p-2 hover:bg-zinc-500 hover:text-orange-500'
       >
         Categories
@@ -38,7 +41,8 @@ const CategoryCard = ({ categories }: Props) => {
 
       {showCard && (
         <div
-          ref={ref}
+          ref={containerRef}
+          onClick={() => setShowCard(false)}
           className='bg-white dark:bg-black rounded-2xl p-3 ml-5 w-[400px] overflow-auto z-60 dark:border-slate-800 absolute right-[-150px]'
         >
           <h2 className='text-xl tracking-widest'>
@@ -65,7 +69,6 @@ const CategoryCard = ({ categories }: Props) => {
             {categories?.map((category: Category) => (
               <Link href={`/${category.title}`}
                 key={category.id}
-                onClick={() => setShowCard(false)}
                 className='w-full hover:underline hover:text-orange-500 my-2'
               >
                 <div className='flex flex-col items-center'>

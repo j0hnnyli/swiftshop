@@ -29,6 +29,7 @@ const CategoryCard = ({ categories }: Props) => {
     return () => window.removeEventListener('mousedown', handleClickOutside);
   }, [showCard]);
 
+
   return (
     <div className='relative'>
       <button

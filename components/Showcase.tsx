@@ -21,7 +21,7 @@ const Showcase = () => {
   }
 
   return (
-    <div className='h-[80vh] relative'>
+    <div className='h-[80vh] relative max-w-[1800px] mx-auto'>
       <Image 
         src={slide.img}
         alt={slide.title}

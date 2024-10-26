@@ -25,7 +25,7 @@ const CarouselComponent = ({array} : Props) => {
         {array?.map((item) => (
           <CarouselItem
             key={item.id}
-            className='md:basis-1/3 lg:basis-1/4 2xl:basis-1/6'
+            className='basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/6'
           >
             <div className="relative z-10">
               <Card

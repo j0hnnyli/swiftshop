@@ -19,9 +19,9 @@ const Header = async () => {
 
   return (
     <header 
-      className='fixed top-0 w-full bg-white dark:bg-slate-800 py-2 hidden lg:inline z-50'
+      className='fixed top-0 w-full bg-white dark:bg-slate-800 py-2 hidden lg:inline z-50 h-24 md:flex justify-center items-center'
     >
-      <div className='flex items-center justify-between pr-6 max-w-[1800px] mx-auto'>
+      <div className='flex items-center justify-between pr-6 max-w-[1800px] mx-auto w-full'>
         <div className='flex items-center'>
           <div className=''>
             <Image 

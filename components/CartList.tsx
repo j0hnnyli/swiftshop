@@ -1,4 +1,5 @@
 "use client";
+
 import { useContext } from "react";
 import { cartContext } from "@/context/CartContext";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import SizeSelect from "./SizeSelect";
 import {
   SheetClose
 } from "@/components/ui/sheet"
+import {XMarkIcon} from '@heroicons/react/24/outline'
 
 const CartList = () => {
   const { cart, handleRemove, setCart } = useContext(cartContext);
@@ -38,17 +40,26 @@ const CartList = () => {
   
   return (
     <>
-      <h2 className="text-3xl md:mt-5">Cart : {cart.length} </h2>
-      <div className="h-[90%] lg:h-[87%] overflow-auto w-full relative ">
+      <h2 className="text-3xl md:mt-5">My Cart : {cart.length} </h2>
+      <div className="h-1 w-[90%] bg-indigo-600 rounded-2xl my-5"></div>
+      <div className="h-[90%] lg:h-[87%] overflow-auto w-full relative pb-14">
         {cart.map((item) => (
           <div key={item.cartId} 
-            className="flex flex-col lg:flex-row my-4 justify-evenly items-center mb-10 "
+            className="flex flex-col lg:flex-row my-4 justify-evenly items-center mb-10"
           >
-            <img
-              src={item.images[0]}
-              alt={item.title}
-              className="w-[150px] h-[150px] rounded-2xl"
-            />
+            <div className="relative">
+              <img
+                src={item.images[0]}
+                alt={item.title}
+                className="w-[150px] h-[150px] rounded-2xl"
+              />
+               <button
+                onClick={() => handleRemove(item.cartId)}
+                className="bg-red-500 text-white rounded-2xl hover:bg-red-800 absolute bottom-3 right-3 p-1"
+              >
+                <XMarkIcon className="w-5"/>
+              </button>
+            </div>
 
             <div className="flex flex-col lg:w-[50%] ml-4">
               <Link
@@ -91,13 +102,6 @@ const CartList = () => {
                   </button>
                 </div>
               </div>
-
-              <button
-                onClick={() => handleRemove(item.cartId)}
-                className="py-2 px-4 bg-red-500 text-white rounded-2xl hover:bg-red-800 md:w-[200px] lg:w-full mx-auto"
-              >
-                Remove
-              </button>
             </div>
           </div>
         ))}

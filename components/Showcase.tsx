@@ -34,12 +34,12 @@ const Showcase = () => {
 
       <div className='absolute flex items-center justify-center w-full px-5 bottom-5'>
         <button onClick={handlePrev}
-          className='mr-5 hover:text-blue-600'
+          className='mr-5 hover:text-blue-600 text-white'
         >
           <ChevronLeftIcon className='w-10'/>
         </button>
         <button onClick={handleNext}
-          className='ml-5 hover:text-blue-600'
+          className='ml-5 hover:text-blue-600 text-white'
         >
           <ChevronRightIcon className='w-10'/>
         </button>

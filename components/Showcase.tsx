@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 
 const Showcase = () => {
   const [index, setIndex] = useState<number>(0);
-
   const slide = showcaseSlides[index];
 
   const handlePrev = () => {

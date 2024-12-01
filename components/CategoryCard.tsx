@@ -1,4 +1,5 @@
 "use client";
+
 import { Category } from "@/TS/categoryType";
 import Link from "next/link";
 import { useRef, useState, useEffect, useCallback } from "react";
@@ -89,5 +90,6 @@ const CategoryCard = ({ categories }: Props) => {
     </div>
   );
 };
+
 
 export default CategoryCard;

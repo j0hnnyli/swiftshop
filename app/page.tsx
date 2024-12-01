@@ -44,6 +44,7 @@ export default async function Home() {
               <div className="absolute bg-black opacity-40 h-full w-full rounded-2xl z-20" />
 
               <div className="absolute flex items-center justify-center  w-full h-full">
+
                 <div className="relative z-30 flex flex-col items-center justify-center">
                   <h2 className="text-white text-lg md:text-2xl tracking-widest mb-4">
                     {category.title}

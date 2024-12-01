@@ -7,6 +7,6 @@ export type Product = {
   images: string[];
   quantity: number;
   size: string;
-  cartId: string;  
-  product_id : number;
-}
+  cartId: string;
+  product_id: number;
+};

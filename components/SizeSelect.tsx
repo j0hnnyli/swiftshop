@@ -30,7 +30,7 @@ const SizeSelect = ({ category, id, defaultSize }: Props) => {
     const newSize = e.target.value;
 
     setCart(
-      cart.map((item) => (item.id === id ? { ...item, size: newSize } : item))
+      cart.map((item) => (item.id === id ? { ...item, size: newSize } : item)),
     );
   }
 

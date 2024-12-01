@@ -4,17 +4,16 @@ import { useContext } from "react";
 import { cartContext } from "@/context/CartContext";
 import Link from "next/link";
 import SizeSelect from "./SizeSelect";
-import {
-  SheetClose
-} from "@/components/ui/sheet"
-import {XMarkIcon} from '@heroicons/react/24/outline'
+import { SheetClose } from "@/components/ui/sheet";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const CartList = () => {
   const { cart, handleRemove, setCart } = useContext(cartContext);
 
   const total = cart.reduce(
     (total, curr) => total + curr.price * curr.quantity,
-    0
+    0,
   );
 
   function addQuantity(id: string) {
@@ -22,8 +21,8 @@ const CartList = () => {
       cart.map((item) =>
         item.cartId === id
           ? { ...item, quantity: item.quantity + (item.quantity < 9 ? 1 : 0) }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
@@ -32,32 +31,34 @@ const CartList = () => {
       cart.map((item) =>
         item.cartId === id
           ? { ...item, quantity: item.quantity - (item.quantity > 1 ? 1 : 0) }
-          : item
-      )
+          : item,
+      ),
     );
   }
 
-  
   return (
     <>
       <h2 className="text-3xl md:mt-5">My Cart : {cart.length} </h2>
       <div className="h-1 w-[90%] bg-indigo-600 rounded-2xl my-5"></div>
       <div className="h-[90%] lg:h-[87%] overflow-auto w-full relative pb-14">
         {cart.map((item) => (
-          <div key={item.cartId} 
+          <div
+            key={item.cartId}
             className="flex flex-col lg:flex-row my-4 justify-evenly items-center mb-10"
           >
             <div className="relative">
-              <img
+              <Image
                 src={item.images[0]}
                 alt={item.title}
+                width={150}
+                height={150}
                 className="w-[150px] h-[150px] rounded-2xl"
               />
-               <button
+              <button
                 onClick={() => handleRemove(item.cartId)}
                 className="bg-red-500 text-white rounded-2xl hover:bg-red-800 absolute bottom-3 right-3 p-1"
               >
-                <XMarkIcon className="w-5"/>
+                <XMarkIcon className="w-5" />
               </button>
             </div>
 
@@ -66,9 +67,7 @@ const CartList = () => {
                 href={`/product/${item.id}`}
                 className="text-md mb-2 hover:underline hover:text-gray-500 "
               >
-                <SheetClose>
-                    {item.title}
-                </SheetClose>
+                <SheetClose>{item.title}</SheetClose>
               </Link>
 
               {(item.category !== "Clothes" && item.category !== "Shoes") ||
@@ -106,9 +105,8 @@ const CartList = () => {
           </div>
         ))}
       </div>
-      
-      <div 
-        className="absolute bottom-3 bg-white dark:bg-slate-800 w-[90%]">
+
+      <div className="absolute bottom-3 bg-white dark:bg-slate-800 w-[90%]">
         <h3 className="text-2xl">Total: $ {total}</h3>
         <button className="w-full py-2 px-4 border rounded-2xl bg-black text-white hover:bg-slate-800 mx-auto">
           Checkout

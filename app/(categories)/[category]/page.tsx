@@ -1,64 +1,63 @@
-import React from 'react'
-import Card from '@/components/Card';
-import { Product } from '@/TS/productType'
-import SideColumn from '../SideColumn'
-import supabase from '@/connectSupaBase';
+import React from "react";
+import Card from "@/components/Card";
+import { Product } from "@/TS/productType";
+import SideColumn from "../SideColumn";
+import supabase from "@/connectSupaBase";
 
 type Props = {
-  params : {
-    [category: string] : string
-  }
-  searchParams: string
-}
+  params: {
+    [category: string]: string;
+  };
+  searchParams: string;
+};
 
-const page = async ({ params, searchParams } : Props) => {
+const page = async ({ params, searchParams }: Props) => {
   const param = searchParams.search ? String(searchParams.search) : "";
 
-  let products: Product[] = []
+  let products: Product[] = [];
 
-  if(params.category === 'all'){
-    const {data: allProducts, error} = await supabase
-    .from('products')
-    .select()
-    
-    if(error) return null;
+  if (params.category === "all") {
+    const { data: allProducts, error } = await supabase
+      .from("products")
+      .select();
 
-    products = allProducts
-  }else{
-     const {data: filteredProducts, error} = await supabase
-    .from('products')
-    .select()
-    .eq('category', params.category)
+    if (error) return null;
 
-    if(error) return null;
-    
-    products = filteredProducts
+    products = allProducts;
+  } else {
+    const { data: filteredProducts, error } = await supabase
+      .from("products")
+      .select()
+      .eq("category", params.category);
+
+    if (error) return null;
+
+    products = filteredProducts;
   }
 
-  const filtered = products?.filter((product : Product) => {
-    if(
+  const filtered = products?.filter((product: Product) => {
+    if (
       product.title.includes(param) ||
       product.description.includes(param) ||
       product.category.toLowerCase().includes(param)
-    ){
+    ) {
       return product;
     }
-  })
-  
+  });
+
   return (
-    <div className='flex flex-col lg:flex-row mt-10'>
-      <SideColumn selected = {params.category}/>
-      
-      <div className='p-4 lg:w-[85%] lg:ml-[20%]'>
-        <h2
-          className='text-3xl tracking-widest'
-        >
-          {params.category === 'all' ? ' All Products' : params.category} : {filtered.length}
+    <div className="flex flex-col lg:flex-row mt-10">
+      <SideColumn selected={params.category} />
+
+      <div className="p-4 lg:w-[85%] lg:ml-[20%]">
+        <h2 className="text-3xl tracking-widest">
+          {params.category === "all" ? " All Products" : params.category} :{" "}
+          {filtered.length}
         </h2>
 
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5' >
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5">
           {filtered.map((product: Product) => (
-            <Card 
+            <Card
               key={product.id}
               id={product.id}
               image={product.images[0]}
@@ -70,7 +69,7 @@ const page = async ({ params, searchParams } : Props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

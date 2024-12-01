@@ -2,11 +2,7 @@
 import { useContext, useState, MouseEvent } from "react";
 import { cartContext } from "@/context/CartContext";
 import { Product } from "@/TS/productType";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import CartList from "./CartList";
 
 type Props = {
@@ -30,31 +26,29 @@ const shoeSizes = [
 const clothesSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
 const AddButton = ({ product, variant }: Props) => {
-  const { 
-    cart, handleAddCart, size, setCart 
-  } = useContext(cartContext);
+  const { cart, handleAddCart, size, setCart } = useContext(cartContext);
   const [noSize, setNoSize] = useState(false);
   const [showSizes, setShowSizes] = useState(false);
 
   function addCart(product: Product, selectedSize: string) {
     const findItem = cart.find((item) => item.id === product.id);
 
-    if(findItem && selectedSize === findItem.size){
+    if (findItem && selectedSize === findItem.size) {
       setCart(
-        cart.map((item) => item.id === findItem.id ? 
-          {...item, quantity : item.quantity + 1} :
-          item
-        )
-      )
+        cart.map((item) =>
+          item.id === findItem.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        ),
+      );
       return;
     }
 
-    handleAddCart({ 
-      ...product, 
-      size: selectedSize, 
-      cartId: `${product.id}-${selectedSize}` 
+    handleAddCart({
+      ...product,
+      size: selectedSize,
+      cartId: `${product.id}-${selectedSize}`,
     });
-    
   }
 
   function noSizeAdd(product: Product) {
@@ -62,23 +56,24 @@ const AddButton = ({ product, variant }: Props) => {
 
     if (findItem) {
       setCart(
-        cart.map((item) => item.id === findItem.id ? 
-          {...item, quantity : item.quantity + 1} :
-          item
-        )
-      )
+        cart.map((item) =>
+          item.id === findItem.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        ),
+      );
       return;
     }
 
-    handleAddCart({...product, cartId : `${product.id}`});
+    handleAddCart({ ...product, cartId: `${product.id}` });
   }
 
   // add button is the product page
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     if (
-      !size && 
-      (product.category === "Clothes" || product.category === "Shoes") 
-      && !product.title.includes("Cap")
+      !size &&
+      (product.category === "Clothes" || product.category === "Shoes") &&
+      !product.title.includes("Cap")
     ) {
       e.preventDefault();
       setNoSize(true);
@@ -88,7 +83,6 @@ const AddButton = ({ product, variant }: Props) => {
 
     addCart(product, size);
   };
-
 
   return (
     <Sheet>
@@ -138,9 +132,7 @@ const AddButton = ({ product, variant }: Props) => {
                   onClick={() => setShowSizes(true)}
                   className="border border-white dark:border-gray-500 absolute bottom-3 right-3 flex justify-center items-center rounded-full p-1 bg-gray-500 text-white hover:bg-gray-800 z-30"
                 >
-                  <p className="text-sm p-1">
-                    Add to Cart
-                  </p>
+                  <p className="text-sm p-1">Add to Cart</p>
                 </button>
               )}
             </>
@@ -150,9 +142,7 @@ const AddButton = ({ product, variant }: Props) => {
               onClick={() => noSizeAdd(product)}
               className={`border border-white dark:border-gray-500 absolute bottom-3 right-3 flex justify-center items-center rounded-full p-1 bg-gray-500 text-white hover:bg-gray-800 z-30`}
             >
-              <p className="text-sm p-1">
-                Add to Cart
-              </p>
+              <p className="text-sm p-1">Add to Cart</p>
             </SheetTrigger>
           )}
         </>
@@ -161,12 +151,11 @@ const AddButton = ({ product, variant }: Props) => {
       {variant === "add" && (
         <SheetTrigger
           onClick={handleClick}
-
           className={`py-2 px-4 my-4 rounded-2xl bg-indigo-400 text-gray-100 hover:bg-indigo-800 hover:text-white cursor-pointer
             ${noSize && "bg-red-500 hover:bg-red-500"}
             `}
         >
-          {noSize ? 'Requied Size!' : "Add to Cart"}
+          {noSize ? "Requied Size!" : "Add to Cart"}
         </SheetTrigger>
       )}
 

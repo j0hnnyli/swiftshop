@@ -112,7 +112,7 @@ const AddButton = ({ product, variant }: Props) => {
                       ))}
                     </div>
                   ) : (
-                    <div className="overflow-auto flex items-center gap-2 z-30">
+                    <div className="overflow-auto flex items-center gap-2 z-30  scrollbar-hide">
                       {/* this displays the shoes sizes */}
                       {shoeSizes.map((size: string) => (
                         <SheetTrigger

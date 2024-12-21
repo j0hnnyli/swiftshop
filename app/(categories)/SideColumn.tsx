@@ -13,7 +13,7 @@ const SideColumn = async ({ selected }: Props) => {
   const { data: categories } = await supabase.from("categories").select();
 
   return (
-    <div className="lg:w-[20%] p-2 lg:fixed">
+    <div className="lg:w-[20%] lg:max-w-[350px] p-2 lg:fixed">
       <SearchBar category={selected} />
 
       <div>

@@ -8,7 +8,6 @@ import ShoesSizes from "@/components/ShoesSizesButtons";
 import QuantitySelect from "@/components/QuantitySelect";
 import MediaImagesGallery from "@/components/mediacomponents/MediaImagesGallery";
 import supabase from "@/connectSupaBase";
-import Card from "@/components/Card";
 
 type Props = {
   params: {

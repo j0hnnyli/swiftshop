@@ -91,5 +91,4 @@ const CategoryCard = ({ categories }: Props) => {
   );
 };
 
-
 export default CategoryCard;

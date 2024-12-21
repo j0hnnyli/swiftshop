@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 
 const Showcase = () => {
   const [index, setIndex] = useState<number>(0);
+
   const slide = showcaseSlides[index];
 
   const handlePrev = () => {
@@ -69,7 +70,7 @@ const Showcase = () => {
           initial={{ opacity: 0, y: "-50vh" }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-3xl md:text-7xl font-bold tracking-widest uppercase text-slate-300"
+          className="text-3xl md:text-6xl font-bold tracking-widest uppercase text-slate-300"
         >
           {slide.title}
         </motion.h2>

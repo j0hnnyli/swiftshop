@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import CarouselComponent from "@/components/CarouselComponent";
-import HomePageSearchBar from "@/components/HomePageSearchBar";
 import { Category } from "@/TS/categoryType";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import supabase from "@/connectSupaBase";
-import LoopingText from "@/components/LoopingText";
 import Showcase from "@/components/Showcase";
 
 export default async function Home() {

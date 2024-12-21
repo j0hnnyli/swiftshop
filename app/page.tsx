@@ -14,6 +14,7 @@ export default async function Home() {
 
   return (
     <>
+      <p>Hello there</p>
       <Showcase />
 
       <div className="max-w-[1800px] w-[85%] mx-auto mt-5">

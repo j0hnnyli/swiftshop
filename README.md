@@ -12,11 +12,11 @@ A fully functional eCommerce project with complete cart functionality. Users can
 - Vercel Deployment
 
 ## 🌟 Features
-🛍️ Explore a wide range of items with smooth navigation
-🛒 Add, remove, and update item quantities effortlessly in cart
-🔄 Your cart persist automatically, even if you leave the page
-🔍 Quickly find what you’re looking for
-📱 Responsive to all screen sizes
-⚡ Animations by Framer Motion 
+- 🛍️ Explore a wide range of items with smooth navigation
+- 🛒 Add, remove, and update item quantities effortlessly in cart
+- 🔄 Your cart persist automatically, even if you leave the page
+- 🔍 Quickly find what you’re looking for
+- 📱 Responsive to all screen sizes
+- ⚡ Animations by Framer Motion 
 
 
